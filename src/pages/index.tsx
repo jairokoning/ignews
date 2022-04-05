@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import styles from './home.module.scss';
 import avatarImg from '../../public/images/avatar.svg';
+import React from 'react';
+import { SubscribeButton } from '../components/SubscribeButton';
 
 export default function Home() {
   return (
@@ -19,6 +21,7 @@ export default function Home() {
             Get access to all the publications <br />
             <span>for $9.90 month</span>
           </p>
+          <SubscribeButton />
         </section>
 
         <Image src={avatarImg} alt="Girl coding" />
