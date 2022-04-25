@@ -38,15 +38,15 @@ const webhooks = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       event = stripe.webhooks.constructEvent(buf, secret, process.env.STRIPE_WEBHOOK_SECRET);
     } catch (err) {
-      console.log('DEU ERRO ----')
       return res.status(400).send(`Webhook error: ${err.message}`);
     }
 
     const { type } = event;
-
+    
     if (relevantEvents.has(type)) {
       try {
-        switch (type) {
+        
+        switch (type) {          
           case 'customer.subscription.updated':
           case 'customer.subscription.deleted':
             const subscription = event.data.object as Stripe.Subscription;
