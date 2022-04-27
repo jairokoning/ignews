@@ -20,5 +20,5 @@ export function ActiveLink({ children, activeClassName, ...rest }: ActiviLinkPro
         className
       })}
     </Link>
-  )
+  );
 }
