@@ -10,11 +10,11 @@ interface SubscribeButtonProps {
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   const { data: session } = useSession();
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleSubscribe() {
     if (!session) {
-      signIn('github')
+      signIn('github');
       return;
     }
 
