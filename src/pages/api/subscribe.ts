@@ -8,7 +8,6 @@ type User = {
   ref: {
     id: string;
   },
-
   data: {
     stripe_customer_id: string;
   },
@@ -25,14 +24,14 @@ const subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
           q.Casefold(session.user.email)
         )
       )
-    )
+    );
 
     let customerId = user.data.stripe_customer_id;
 
     if (!customerId) {
       const stripeCustomer = await stripe.customers.create({
         email: session.user.email
-      })
+      });
   
       await fauna.query(
         q.Update(
@@ -43,12 +42,10 @@ const subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
             }
           }
         )
-      )
+      );
 
       customerId = stripeCustomer.id;
-    }
-
-    
+    }    
     
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -64,8 +61,8 @@ const subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
     })
     return res.status(200).json({ sessionId: stripeCheckoutSession.id});
   } else {
-    res.setHeader('Allow', 'POST')
-    res.status(405).end('Method not allowed')
+    res.setHeader('Allow', 'POST');
+    res.status(405).end('Method not allowed');
   }
 }
 
