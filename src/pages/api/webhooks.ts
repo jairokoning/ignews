@@ -10,10 +10,10 @@ async function buffer(readable: Readable) {
   for await  (const chunk of readable) {
     chunks.push(
       typeof chunk === "string" ? Buffer.from(chunk) : chunk
-    )
+    );
   }
 
-  return Buffer.concat(chunks)
+  return Buffer.concat(chunks);
 }
 
 export const config = {
@@ -26,7 +26,7 @@ const relevantEvents = new Set([
   'checkout.session.completed',
   'customer.subscription.updated',
   'customer.subscription.deleted',
-])
+]);
 
 const webhooks = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
@@ -73,13 +73,11 @@ const webhooks = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
-    res.json({ received: true })
+    res.json({ received: true });
   } else {
-    res.setHeader('Allow', 'POST')
-    res.status(405).end('Method not allowed')
-  }
-
-  
+    res.setHeader('Allow', 'POST');
+    res.status(405).end('Method not allowed');
+  }  
 }
 
 export default webhooks;
