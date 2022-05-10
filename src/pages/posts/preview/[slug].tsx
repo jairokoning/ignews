@@ -25,7 +25,7 @@ export default function PostPreview({post}:PostPreviewProps){
     if (session?.activeSubscription) {
       router.push(`/posts/${post.slug}`)
     }
-  }, [post, session, router])
+  }, [post, session, router]);
   
   return (
     <>
@@ -73,11 +73,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       month: 'long',
       year: 'numeric',
     })
-  }
+  };
 
   return {
     props: {
       post,
     }
-  }
+  };
 }
