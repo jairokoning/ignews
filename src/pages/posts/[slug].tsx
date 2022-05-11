@@ -68,11 +68,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
       month: 'long',
       year: 'numeric',
     })
-  }
+  };
 
   return {
     props: {
       post,
     }
-  }
+  };
 }
