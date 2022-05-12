@@ -13,6 +13,7 @@ type Post = {
   excerpt: string;
   updatedAt: string;
 }
+
 interface PostsProps {
   posts: Post[];
 }
@@ -44,14 +45,13 @@ export default function Posts({ posts }: PostsProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const response = await prismic.query([
-    Prismic.predicates.at('document.type', 'post')
-  ], {
+  const response = await prismic.getAllByType("post", {
+
     fetch: ['post.title', 'post.content'],
     pageSize: 100,
   })
 
-  const posts = response.results.map(post => {
+  const posts = response.map(post => {
     return {
       slug: post.uid,
       title: RichText.asText(post.data.title),
