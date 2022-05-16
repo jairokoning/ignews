@@ -1,12 +1,11 @@
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-
-import styles from './home.module.scss';
-import avatarImg from '../../public/images/avatar.svg';
-import React from 'react';
 import { SubscribeButton } from '../components/SubscribeButton';
 import { stripe } from '../services/stripe';
+import styles from './home.module.scss';
+import avatarImg from '../../public/images/avatar.svg';
 
 interface HomeProps {
   product: {
